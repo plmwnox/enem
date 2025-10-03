@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jogo dos Conectivos - ENEM</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #fff;
+      line-height: 1.6;
+      background: linear-gradient(270deg, #1a0033, #2b004d, #0a1a40, #142850, #1a0033);
+      background-size: 800% 800%;
+      animation: gradientBG 25s ease infinite;
+    }
+    @keyframes gradientBG {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+    header {
+      background: rgba(0,0,0,0.6);
+      padding: 30px 20px;
+      text-align: center;
+      border-bottom: 2px solid rgba(255,255,255,0.2);
+    }
+    header h1 {
+      color: #e0e8ff;
+      text-shadow: 0 0 12px rgba(100,150,255,0.7);
+    }
+    nav {
+      background: rgba(0,0,0,0.5);
+      padding: 15px;
+      text-align: center;
+      backdrop-filter: blur(6px);
+    }
+    nav a {
+      color: #dce6ff;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s, text-shadow 0.3s;
+    }
+    nav a:hover {
+      color: #5da8ff;
+      text-shadow: 0 0 12px #5da8ff;
+    }
+    main {
+      padding: 40px 20px;
+      max-width: 900px;
+      margin: auto;
+      text-align: center;
+    }
+    h2 {
+      margin-bottom: 30px;
+      text-shadow: 0 0 12px rgba(0,0,0,0.8);
+    }
+    .game-box {
+      background: rgba(255,255,255,0.08);
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.4);
+      margin-bottom: 30px;
+    }
+    button {
+      background: #5da8ff;
+      color: #fff;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin: 8px;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #417dce;
+    }
+    .result {
+      margin-top: 15px;
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+    .back-btn {
+      background: #00c46c;
+      margin-top: 20px;
+      padding: 12px 20px;
+    }
+    .back-btn:hover {
+      background: #009f55;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: rgba(0,0,0,0.6);
+      margin-top: 30px;
+      border-top: 2px solid rgba(255,255,255,0.2);
+    }
+    footer a {
+      color: #5da8ff;
+      text-decoration: none;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Jogo dos Conectivos</h1>
+  </header>
+
+  <nav>
+    <a href="index.html">Início</a>
+    <a href="jogos.html">Voltar aos Jogos</a>
+    <a href="redacao.html">Sobre a Redação</a>
+    <a href="temas.html">Temas</a>
+    <a href="dicas.html">Dicas</a>
+    <a href="quiz.html">Quiz</a>
+    <a href="contato.html">Contato</a>
+  </nav>
+
+  <main>
+    <h2>Complete as frases escolhendo o conectivo correto 🧩</h2>
+    <div class="game-box">
+      <p id="frase"></p>
+      <div id="opcoes"></div>
+      <p class="result" id="resultado"></p>
+    </div>
+    <div id="feedbackFinal"></div>
+  </main>
+
+  <footer>
+    <p>© 2025 - Redação ENEM na Prática | Todos os direitos reservados</p>
+    <p><a href="contato.html">Entre em contato</a></p>
+  </footer>
+
+  <script>
+    const frases = [
+      { texto: '"A violência contra a mulher persiste, ____ avanços legislativos ocorreram."', resposta: "embora", opcoes: ["portanto", "embora", "além disso"] },
+      { texto: '"A educação é essencial, ____ promove igualdade e oportunidades."', resposta: "pois", opcoes: ["embora", "portanto", "pois"] },
+      { texto: '"O uso excessivo de tecnologia pode causar isolamento, ____ facilita a comunicação."', resposta: "ao mesmo tempo que", opcoes: ["portanto", "ao mesmo tempo que", "porque"] },
+      { texto: '"O desmatamento continua crescendo, ____ projetos de preservação são criados."', resposta: "apesar de", opcoes: ["apesar de", "logo", "já que"] },
+      { texto: '"O trânsito nas cidades está cada vez pior, ____ muitos preferem o transporte público."', resposta: "por isso", opcoes: ["por isso", "embora", "ao passo que"] },
+      { texto: '"As redes sociais aproximam pessoas, ____ também podem gerar conflitos."', resposta: "mas", opcoes: ["pois", "mas", "logo"] },
+      { texto: '"A saúde pública enfrenta dificuldades, ____ o financiamento é insuficiente."', resposta: "porque", opcoes: ["portanto", "porque", "contudo"] },
+      { texto: '"A cultura deve ser valorizada, ____ fortalece a identidade nacional."', resposta: "pois", opcoes: ["contudo", "pois", "embora"] },
+      { texto: '"O trabalho infantil persiste, ____ é proibido por lei."', resposta: "apesar de", opcoes: ["portanto", "apesar de", "logo"] },
+      { texto: '"A leitura amplia o conhecimento, ____ deve ser incentivada desde cedo."', resposta: "portanto", opcoes: ["porque", "embora", "portanto"] }
+    ];
+
+    let indice = 0;
+    let respostasJogador = [];
+
+    function carregarFrase() {
+      if (indice < frases.length) {
+        const frase = frases[indice];
+        document.getElementById("frase").innerHTML = "<em>" + frase.texto + "</em>";
+        const opcoesDiv = document.getElementById("opcoes");
+        opcoesDiv.innerHTML = "";
+        frase.opcoes.forEach(opcao => {
+          const btn = document.createElement("button");
+          btn.textContent = opcao;
+          btn.onclick = () => verificarResposta(opcao);
+          opcoesDiv.appendChild(btn);
+        });
+        document.getElementById("resultado").textContent = "";
+      } else {
+        mostrarFeedbackFinal();
+      }
+    }
+
+    function verificarResposta(opcao) {
+      const frase = frases[indice];
+      let acertou = (opcao === frase.resposta);
+      respostasJogador.push({
+        frase: frase.texto,
+        respostaCerta: frase.resposta,
+        respostaJogador: opcao,
+        acertou: acertou
+      });
+
+      indice++;
+      setTimeout(carregarFrase, 600); // passa automático para a próxima em 0.6s
+    }
+
+    function mostrarFeedbackFinal() {
+      document.getElementById("frase").textContent = "🎉 Você concluiu todas as frases!";
+      document.getElementById("opcoes").innerHTML = "";
+      document.getElementById("resultado").textContent = "";
+
+      let html = "<h3>📊 Resultado Final</h3><ul style='text-align:left'>";
+      respostasJogador.forEach((res, i) => {
+        html += `<li><strong>Frase ${i+1}:</strong> ${res.frase}<br>
+          Sua resposta: <em>${res.respostaJogador}</em> 
+          ${res.acertou ? "✅ Correto" : "❌ Errado (certo: " + res.respostaCerta + ")"}</li><br>`;
+      });
+      html += "</ul>";
+      html += `<button class="back-btn" onclick="window.location.href='jogos.html'">⬅️ Voltar aos Jogos</button>`;
+      document.getElementById("feedbackFinal").innerHTML = html;
+    }
+
+    carregarFrase();
+  </script>
+</body>
+</html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz - Redação ENEM</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #fff;
+      background: linear-gradient(270deg, #1a0033, #2b004d, #0a1a40, #142850, #1a0033);
+      background-size: 800% 800%;
+      animation: gradientBG 25s ease infinite;
+    }
+    @keyframes gradientBG {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+    header {
+      background: rgba(0,0,0,0.6);
+      padding: 30px 20px;
+      text-align: center;
+      border-bottom: 2px solid rgba(255,255,255,0.2);
+    }
+    header h1 {
+      color: #e0e8ff;
+      text-shadow: 0 0 12px rgba(100,150,255,0.7);
+    }
+    nav {
+      background: rgba(0,0,0,0.5);
+      padding: 15px;
+      text-align: center;
+    }
+    nav a {
+      color: #dce6ff;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s, text-shadow 0.3s;
+    }
+    nav a:hover {
+      color: #5da8ff;
+      text-shadow: 0 0 12px #5da8ff;
+    }
+    main {
+      padding: 40px 20px;
+      max-width: 900px;
+      margin: auto;
+      text-align: center;
+    }
+    h2 {
+      margin-bottom: 20px;
+      text-shadow: 0 0 12px rgba(0,0,0,0.8);
+    }
+    .quiz-box {
+      background: rgba(255,255,255,0.08);
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.4);
+      margin-bottom: 30px;
+    }
+    .option {
+      display: block;
+      margin: 12px auto;
+      padding: 12px 20px;
+      border: 1px solid #5da8ff;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.1);
+      cursor: pointer;
+      transition: 0.3s;
+      max-width: 500px;
+    }
+    .option:hover {
+      background: rgba(93,168,255,0.2);
+    }
+    button {
+      background: #5da8ff;
+      color: #fff;
+      border: none;
+      padding: 12px 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin: 15px 5px;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #417dce;
+    }
+    .back-btn {
+      background: #00c46c;
+    }
+    .back-btn:hover {
+      background: #009f55;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: rgba(0,0,0,0.6);
+      margin-top: 30px;
+      border-top: 2px solid rgba(255,255,255,0.2);
+    }
+    footer a {
+      color: #5da8ff;
+      text-decoration: none;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Quiz sobre a Redação do ENEM</h1>
+  </header>
+
+  <nav>
+    <a href="index.html">Início</a>
+    <a href="jogos.html">Jogos</a>
+    <a href="redacao.html">Sobre a Redação</a>
+    <a href="temas.html">Temas</a>
+    <a href="dicas.html">Dicas</a>
+    <a href="contato.html">Contato</a>
+  </nav>
+
+  <main>
+    <h2>Teste seus conhecimentos 📝</h2>
+    <!-- Botão extra para voltar ao início -->
+    <button class="back-btn" onclick="window.location.href='index.html'">⬅️ Voltar ao Início</button>
+
+    <div class="quiz-box" id="quiz">
+      <p id="pergunta"></p>
+      <div id="opcoes"></div>
+    </div>
+    <div id="resultadoFinal"></div>
+  </main>
+
+  <footer>
+    <p>© 2025 - Redação ENEM na Prática | Todos os direitos reservados</p>
+    <p><a href="contato.html">Entre em contato</a></p>
+  </footer>
+
+  <script>
+    const perguntas = [
+      { pergunta: "Qual é o tipo de texto exigido na redação do ENEM?", opcoes: ["Narrativo", "Dissertativo-Argumentativo", "Descritivo", "Poético"], correta: "Dissertativo-Argumentativo" },
+      { pergunta: "Quantas competências são avaliadas na redação do ENEM?", opcoes: ["3", "4", "5", "6"], correta: "5" },
+      { pergunta: "Qual é o número mínimo de linhas para não ter a redação anulada?", opcoes: ["7 linhas", "10 linhas", "12 linhas", "15 linhas"], correta: "7 linhas" },
+      { pergunta: "O que pode levar a nota zero automaticamente?", opcoes: ["Fuga do tema", "Letra ilegível", "Texto em branco", "Todas as alternativas"], correta: "Todas as alternativas" },
+      { pergunta: "A proposta de intervenção deve conter:", opcoes: ["Agente, ação, modo/meio, efeito e detalhamento", "Título e conclusão", "Exemplos de amigos", "Referências bibliográficas"], correta: "Agente, ação, modo/meio, efeito e detalhamento" },
+      { pergunta: "Qual desses conectivos é adequado para oposição?", opcoes: ["Portanto", "Entretanto", "Logo", "Assim"], correta: "Entretanto" },
+      { pergunta: "Qual é o limite máximo de linhas da redação?", opcoes: ["20", "25", "30", "35"], correta: "30" },
+      { pergunta: "É permitido escrever em primeira pessoa?", opcoes: ["Sim, sempre", "Não", "Sim, mas apenas no final", "Somente se for opinião"], correta: "Não" },
+      { pergunta: "O respeito aos direitos humanos influencia em qual competência?", opcoes: ["1", "2", "3", "5"], correta: "5" },
+      { pergunta: "Qual dessas opções NÃO é recomendada em uma redação nota 1000?", opcoes: ["Citação de filósofos", "Uso de repertório sociocultural", "Linguagem coloquial com gírias", "Dados estatísticos"], correta: "Linguagem coloquial com gírias" }
+    ];
+
+    let rodadaAtual = 0;
+    let respostas = [];
+
+    function carregarRodada() {
+      if (rodadaAtual < perguntas.length) {
+        document.getElementById("pergunta").textContent = perguntas[rodadaAtual].pergunta;
+        const opcoesDiv = document.getElementById("opcoes");
+        opcoesDiv.innerHTML = "";
+        perguntas[rodadaAtual].opcoes.forEach(op => {
+          const btn = document.createElement("button");
+          btn.textContent = op;
+          btn.classList.add("option");
+          btn.onclick = () => verificarResposta(op);
+          opcoesDiv.appendChild(btn);
+        });
+      } else {
+        mostrarResultado();
+      }
+    }
+
+    function verificarResposta(opcao) {
+      const correta = perguntas[rodadaAtual].correta;
+      let acertou = opcao === correta;
+      respostas.push({
+        questao: rodadaAtual + 1,
+        pergunta: perguntas[rodadaAtual].pergunta,
+        resposta: opcao,
+        correta: correta,
+        acertou: acertou
+      });
+      rodadaAtual++;
+      carregarRodada();
+    }
+
+    function mostrarResultado() {
+      document.getElementById("quiz").style.display = "none";
+      let pontos = respostas.filter(r => r.acertou).length;
+      let html = `<h3>📊 Você acertou ${pontos} de ${perguntas.length} questões!</h3>`;
+      respostas.forEach(res => {
+        html += `<p><strong>Questão ${res.questao}:</strong> ${res.pergunta}<br>
+        Sua resposta: ${res.resposta}<br>
+        ${res.acertou ? "✅ Correto" : "❌ Errado (resposta correta: " + res.correta + ")"}</p>`;
+      });
+      html += `<button class="back-btn" onclick="window.location.href='index.html'">⬅️ Voltar ao Início</button>`;
+      document.getElementById("resultadoFinal").innerHTML = html;
+    }
+
+    carregarRodada();
+  </script>
+</body>
+</html>

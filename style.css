@@ -1,0 +1,140 @@
+/* =======================
+   Estilos base (valem para todos os temas)
+   ======================= */
+body {
+  margin: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  color: #fff;
+  transition: background 0.6s, color 0.6s;
+}
+
+header {
+  background: rgba(0, 0, 0, 0.6);
+  padding: 25px;
+  text-align: center;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2.2rem;
+  text-shadow: 0 0 12px rgba(100, 150, 255, 0.7);
+}
+
+nav {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 15px;
+  text-align: center;
+}
+
+nav a {
+  color: #dce6ff;
+  margin: 0 15px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s, text-shadow 0.3s;
+}
+
+nav a:hover {
+  color: #5da8ff;
+  text-shadow: 0 0 12px #5da8ff;
+}
+
+main {
+  max-width: 1000px;
+  margin: 30px auto;
+  padding: 20px;
+}
+
+.card {
+  padding: 25px;
+  margin-bottom: 25px;
+  border-radius: 15px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.5);
+}
+
+.card h2 {
+  margin-top: 0;
+  font-size: 1.6rem;
+  text-align: center;
+  text-shadow: 0 0 10px rgba(0,0,0,0.6);
+}
+
+button, .btn {
+  display: inline-block;
+  background: #5da8ff;
+  color: #fff;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 1rem;
+  margin: 8px 5px;
+  text-decoration: none;
+  text-align: center;
+}
+
+button:hover, .btn:hover {
+  background: #417dce;
+}
+
+.back-btn {
+  background: #00c46c;
+}
+
+.back-btn:hover {
+  background: #009f55;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  margin-top: 30px;
+  font-size: 0.9rem;
+  background: rgba(0, 0, 0, 0.6);
+  border-top: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+footer a {
+  color: #5da8ff;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* =======================
+   Tema Padrão (futurista escuro)
+   ======================= */
+body.theme-dark {
+  background: linear-gradient(270deg, #1a0033, #2b004d, #0a1a40, #142850, #1a0033);
+  background-size: 800% 800%;
+  animation: gradientBG 25s ease infinite;
+  color: #fff;
+}
+
+.card.theme-dark {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* =======================
+   Tema Alternativo (futurista claro)
+   ======================= */
+body.theme-light {
+  background: linear-gradient(270deg, #e6f0ff, #ccd9ff, #99bbff, #b3cfff, #e6f0ff);
+  background-size: 800% 800%;
+  animation: gradientBG 25s ease infinite;
+  color: #000;
+}
+
+.card.theme-light {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}

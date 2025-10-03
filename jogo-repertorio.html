@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jogo do Repertório Sociocultural - ENEM</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #fff;
+      line-height: 1.6;
+      background: linear-gradient(270deg, #1a0033, #2b004d, #0a1a40, #142850, #1a0033);
+      background-size: 800% 800%;
+      animation: gradientBG 25s ease infinite;
+    }
+    @keyframes gradientBG {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+    header {
+      background: rgba(0,0,0,0.6);
+      padding: 30px 20px;
+      text-align: center;
+      border-bottom: 2px solid rgba(255,255,255,0.2);
+    }
+    header h1 {
+      color: #e0e8ff;
+      text-shadow: 0 0 12px rgba(100,150,255,0.7);
+    }
+    nav {
+      background: rgba(0,0,0,0.5);
+      padding: 15px;
+      text-align: center;
+    }
+    nav a {
+      color: #dce6ff;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s, text-shadow 0.3s;
+    }
+    nav a:hover {
+      color: #5da8ff;
+      text-shadow: 0 0 12px #5da8ff;
+    }
+    main {
+      padding: 40px 20px;
+      max-width: 900px;
+      margin: auto;
+      text-align: center;
+    }
+    h2 {
+      margin-bottom: 30px;
+      text-shadow: 0 0 12px rgba(0,0,0,0.8);
+    }
+    .game-box {
+      background: rgba(255,255,255,0.08);
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.4);
+      margin-bottom: 30px;
+    }
+    .option {
+      display: block;
+      margin: 12px auto;
+      padding: 12px 20px;
+      border: 1px solid #5da8ff;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.1);
+      cursor: pointer;
+      max-width: 600px;
+      transition: 0.3s;
+    }
+    .option:hover {
+      background: rgba(93,168,255,0.2);
+    }
+    button {
+      background: #5da8ff;
+      color: #fff;
+      border: none;
+      padding: 12px 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #417dce;
+    }
+    .back-btn {
+      background: #00c46c;
+    }
+    .back-btn:hover {
+      background: #009f55;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: rgba(0,0,0,0.6);
+      margin-top: 30px;
+      border-top: 2px solid rgba(255,255,255,0.2);
+    }
+    footer a {
+      color: #5da8ff;
+      text-decoration: none;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Jogo do Repertório Sociocultural</h1>
+  </header>
+
+  <nav>
+    <a href="index.html">Início</a>
+    <a href="jogos.html">Voltar aos Jogos</a>
+    <a href="redacao.html">Sobre a Redação</a>
+    <a href="temas.html">Temas</a>
+    <a href="dicas.html">Dicas</a>
+    <a href="quiz.html">Quiz</a>
+    <a href="contato.html">Contato</a>
+  </nav>
+
+  <main>
+    <h2>Escolha o repertório sociocultural mais adequado para o tema</h2>
+    <div class="game-box" id="jogo">
+      <p id="rodadaInfo"></p>
+      <h3 id="tema"></h3>
+      <div id="opcoes"></div>
+    </div>
+    <div id="feedbackFinal"></div>
+  </main>
+
+  <footer>
+    <p>© 2025 - Redação ENEM na Prática | Todos os direitos reservados</p>
+    <p><a href="contato.html">Entre em contato</a></p>
+  </footer>
+
+  <script>
+    const perguntas = [
+      {
+        tema: "Desafios para a formação educacional de surdos no Brasil",
+        opcoes: ["Lei de Cotas", "Lei de Libras (2002)", "Série La Casa de Papel"],
+        correta: "Lei de Libras (2002)"
+      },
+      {
+        tema: "Manipulação do comportamento do usuário pelo controle de dados na internet",
+        opcoes: ["Documentário 'O Dilema das Redes'", "Mitologia Grega: Prometeu", "Estatuto da Criança e do Adolescente"],
+        correta: "Documentário 'O Dilema das Redes'"
+      },
+      {
+        tema: "Democratização do acesso ao cinema no Brasil",
+        opcoes: ["Filme 'Cinema Paradiso'", "Lei Rouanet", "Revolução Industrial"],
+        correta: "Lei Rouanet"
+      },
+      {
+        tema: "Desafios da valorização de comunidades e culturas tradicionais no Brasil",
+        opcoes: ["Constituição Federal de 1988", "Série Stranger Things", "Reforma Protestante"],
+        correta: "Constituição Federal de 1988"
+      },
+      {
+        tema: "Os limites da liberdade de expressão no Brasil",
+        opcoes: ["Artigo 5º da Constituição", "Série The Office", "Teoria da Evolução de Darwin"],
+        correta: "Artigo 5º da Constituição"
+      },
+      {
+        tema: "A persistência da violência contra a mulher no Brasil",
+        opcoes: ["Lei Maria da Penha", "Série Breaking Bad", "Magna Carta (1215)"],
+        correta: "Lei Maria da Penha"
+      },
+      {
+        tema: "Caminhos para combater o racismo no Brasil",
+        opcoes: ["Movimento Black Lives Matter", "Lei Áurea (1888)", "Dom Quixote"],
+        correta: "Movimento Black Lives Matter"
+      },
+      {
+        tema: "Enfrentamento do estigma associado às doenças mentais",
+        opcoes: ["Filme 'O Lado Bom da Vida'", "Série Game of Thrones", "Descobrimento do Brasil"],
+        correta: "Filme 'O Lado Bom da Vida'"
+      },
+      {
+        tema: "A importância da vacinação para a saúde pública",
+        opcoes: ["Movimento antivacina", "Série Dark", "Campanha Nacional de Vacinação (Zé Gotinha)"],
+        correta: "Campanha Nacional de Vacinação (Zé Gotinha)"
+      },
+      {
+        tema: "A crise hídrica no Brasil",
+        opcoes: ["Encíclica Laudato Si (Papa Francisco)", "Harry Potter", "Pacto de Varsóvia"],
+        correta: "Encíclica Laudato Si (Papa Francisco)"
+      }
+    ];
+
+    let rodadaAtual = 0;
+    let respostas = [];
+
+    function carregarRodada() {
+      if (rodadaAtual < perguntas.length) {
+        document.getElementById("rodadaInfo").textContent = `Rodada ${rodadaAtual + 1} de ${perguntas.length}`;
+        document.getElementById("tema").textContent = perguntas[rodadaAtual].tema;
+        const opcoesDiv = document.getElementById("opcoes");
+        opcoesDiv.innerHTML = "";
+        perguntas[rodadaAtual].opcoes.forEach(op => {
+          const btn = document.createElement("button");
+          btn.textContent = op;
+          btn.classList.add("option");
+          btn.onclick = () => verificarResposta(op);
+          opcoesDiv.appendChild(btn);
+        });
+      } else {
+        mostrarFeedbackFinal();
+      }
+    }
+
+    function verificarResposta(opcao) {
+      const correta = perguntas[rodadaAtual].correta;
+      let acertou = opcao === correta;
+      respostas.push({
+        rodada: rodadaAtual + 1,
+        tema: perguntas[rodadaAtual].tema,
+        resposta: opcao,
+        correta: correta,
+        acertou: acertou
+      });
+      rodadaAtual++;
+      carregarRodada();
+    }
+
+    function mostrarFeedbackFinal() {
+      document.getElementById("jogo").style.display = "none";
+      let html = "<h3>📊 Resultado Final</h3>";
+      respostas.forEach(res => {
+        html += `<p><strong>Rodada ${res.rodada}:</strong> Tema: ${res.tema}<br>
+        Sua resposta: ${res.resposta}<br>
+        ${res.acertou ? "✅ Correto" : "❌ Errado (resposta correta: " + res.correta + ")"}</p>`;
+      });
+      html += `<button class="back-btn" onclick="window.location.href='jogos.html'">⬅️ Voltar aos Jogos</button>`;
+      document.getElementById("feedbackFinal").innerHTML = html;
+    }
+
+    carregarRodada();
+  </script>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contato - Projeto ENEM</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      color: #fff;
+      background: linear-gradient(270deg, #1a0033, #2b004d, #0a1a40, #142850, #1a0033);
+      background-size: 800% 800%;
+      animation: gradientBG 25s ease infinite;
+    }
+    @keyframes gradientBG {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+    header {
+      text-align: center;
+      padding: 30px;
+      background: rgba(0,0,0,0.6);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+    main {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 20px;
+    }
+    .card {
+      background: rgba(255,255,255,0.08);
+      padding: 25px;
+      margin-bottom: 25px;
+      border-radius: 15px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.5);
+    }
+    h2 {
+      margin-top: 0;
+      text-align: center;
+      font-size: 1.8rem;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-top: 20px;
+    }
+    input, textarea {
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+    }
+    textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+    button {
+      background: #5da8ff;
+      color: #fff;
+      border: none;
+      padding: 12px 18px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+      font-size: 1rem;
+      align-self: center;
+    }
+    button:hover {
+      background: #417dce;
+    }
+    .back-btn {
+      background: #00c46c;
+      margin-bottom: 20px;
+    }
+    .back-btn:hover {
+      background: #009f55;
+    }
+    .social {
+      text-align: center;
+      margin-top: 15px;
+    }
+    .social a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: #5da8ff;
+      font-weight: bold;
+    }
+    .social a:hover {
+      color: #00c46c;
+    }
+    footer {
+      text-align: center;
+      padding: 15px;
+      margin-top: 30px;
+      font-size: 0.9rem;
+      background: rgba(0,0,0,0.4);
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Contato</h1>
+  </header>
+
+  <main>
+    <button class="back-btn" onclick="window.location.href='index.html'">⬅️ Voltar à Página Inicial</button>
+
+    <div class="card">
+      <h2>Fale Conosco</h2>
+      <p>Tem dúvidas, sugestões ou quer falar com a equipe do projeto? Preencha o formulário abaixo:</p>
+      <form>
+        <input type="text" placeholder="Seu nome" required>
+        <input type="email" placeholder="Seu e-mail" required>
+        <textarea placeholder="Sua mensagem" required></textarea>
+        <button type="submit">Enviar Mensagem</button>
+      </form>
+    </div>
+
+    <div class="card">
+      <h2>Redes Sociais</h2>
+      <p>Você também pode nos acompanhar e enviar mensagens por aqui:</p>
+      <div class="social">
+        <a href="#">📷 Instagram</a>
+        <a href="#">📘 Facebook</a>
+        <a href="#">🐦 Twitter</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2024 Projeto ENEM Redação. Todos os direitos reservados.</p>
+  </footer>
+</body>
+</html>

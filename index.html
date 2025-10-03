@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redação ENEM na Prática</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ===== RESET ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: #f1f1f1;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background: rgba(0,0,0,0.4);
+            padding: 40px 20px;
+            text-align: center;
+            box-shadow: 0px 4px 20px rgba(0,0,0,0.5);
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            color: #00ffe5;
+            text-shadow: 0 0 10px #00ffe5;
+        }
+
+        header p {
+            margin-top: 10px;
+            font-size: 1.2em;
+            color: #ccc;
+        }
+
+        nav {
+            background: rgba(0,0,0,0.6);
+            padding: 15px;
+            text-align: center;
+            backdrop-filter: blur(6px);
+        }
+
+        nav a {
+            color: #00ffe5;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s, text-shadow 0.3s;
+        }
+
+        nav a:hover {
+            color: #fff;
+            text-shadow: 0 0 10px #00ffe5;
+        }
+
+        section {
+            flex: 1;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 30px;
+            width: 300px;
+            text-align: center;
+            box-shadow: 0px 4px 20px rgba(0,0,0,0.4);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0px 8px 25px rgba(0, 255, 229, 0.4);
+        }
+
+        .card h2 {
+            margin-bottom: 15px;
+            color: #00ffe5;
+        }
+
+        .card p {
+            color: #ddd;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 20px;
+            background: #00ffe5;
+            color: #0f2027;
+            border-radius: 8px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: background 0.3s, transform 0.3s;
+            margin: 5px;
+        }
+
+        .btn:hover {
+            background: #00b8a5;
+            transform: scale(1.05);
+        }
+
+        footer {
+            background: rgba(0,0,0,0.6);
+            color: #aaa;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.9em;
+            margin-top: auto;
+        }
+
+        footer a {
+            color: #00ffe5;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <body class="theme-dark"> <!-- tema escuro (padrão) -->
+    <header>
+        <h1>Redação ENEM na Prática</h1>
+        <p>Aprenda, pratique e conquiste sua nota máxima!</p>
+    </header>
+
+    <nav>
+        <a href="index.html">Início</a>
+        <a href="redacao.html">Sobre a Redação</a>
+        <a href="temas.html">Temas</a>
+        <a href="redacoes1000.html">Redações 1000</a>
+        <a href="dicas.html">Dicas</a>
+        <a href="jogos.html">Jogos</a>
+        <a href="quiz.html">Quiz</a>
+        <a href="contato.html">Contato</a>
+    </nav>
+
+    <section>
+        <div class="card">
+            <h2>📘 Sobre o Site</h2>
+            <p>Ajuda estudantes a dominar a redação do ENEM de forma clara, objetiva e dinâmica.</p>
+            <a href="redacao.html" class="btn">Aprender Agora</a>
+        </div>
+
+        <div class="card">
+            <h2>✍️ Redação do ENEM</h2>
+            <p>Descubra a estrutura e aprenda as 5 competências avaliadas para atingir a nota 1000.</p>
+            <a href="temas.html" class="btn">Explorar Temas</a>
+        </div>
+
+        <div class="card">
+            <h2>🎮 Jogos e Quiz</h2>
+            <p>Aprenda brincando com jogos interativos e teste seus conhecimentos no quiz de redação.</p>
+            <a href="jogos.html" class="btn">Ir para Jogos</a>
+            <a href="quiz.html" class="btn">Fazer Quiz</a>
+        </div>
+    </section>
+    
+    <footer>
+        <p>© 2025 - Redação ENEM na Prática | Todos os direitos reservados</p>
+        <p><a href="contato.html">Entre em contato</a></p>
+    </footer>
+</body>
+</html>
