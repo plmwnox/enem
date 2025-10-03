@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prática de Redação</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    textarea {
+      width: 100%;
+      border-radius: 10px;
+      padding: 10px;
+      font-size: 1rem;
+      line-height: 1.5rem; /* altura fixa de linha */
+      resize: none;
+    }
+    /* Estilos do contador */
+    #linhaCount {
+      font-weight: bold;
+    }
+    .ok {
+      color: #00ff88; /* verde */
+    }
+    .erro {
+      color: #ff4d4d; /* vermelho */
+    }
+  </style>
+</head>
+<body class="theme-dark">
+  <header>
+    <h1>Prática de Redação - ENEM</h1>
+  </header>
+
+  <nav>
+    <a href="index.html">Início</a>
+    <a href="redacao.html">Sobre a Redação</a>
+    <a href="temas.html">Temas</a>
+    <a href="redacoes1000.html">Redações Nota 1000</a>
+    <a href="jogos.html">Jogos</a>
+    <a href="quiz.html">Quiz</a>
+    <a href="dicas.html">Dicas</a>
+    <a href="contato.html">Contato</a>
+  </nav>
+
+  <main>
+    <button class="back-btn" onclick="window.location.href='index.html'">⬅️ Voltar à Página Inicial</button>
+
+    <div class="card">
+      <h2>Escreva sua Redação</h2>
+      <p>Pratique sua redação no modelo do ENEM (mínimo de <b>7 linhas</b> e máximo de <b>30 linhas</b>).</p>
+
+      <!-- Cronômetro -->
+      <p><b>⏳ Tempo Restante:</b> <span id="timer">01:30:00</span></p>
+
+      <textarea id="redacao" rows="20"></textarea>
+
+      <p><b>Linhas:</b> <span id="linhaCount" class="">0</span> / 30</p>
+      <p><b>Caracteres:</b> <span id="charCount">0</span></p>
+
+      <button onclick="limpar()">🗑️ Limpar</button>
+      <button onclick="salvar()">💾 Salvar Redação</button>
+      <button onclick="reiniciar()">🔄 Reiniciar Cronômetro</button>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2024 Projeto ENEM Redação | Todos os direitos reservados</p>
+  </footer>
+
+  <script>
+    const textarea = document.getElementById("redacao");
+    const linhaCount = document.getElementById("linhaCount");
+    const charCount = document.getElementById("charCount");
+    const timerDisplay = document.getElementById("timer");
+
+    let tempoRestante = 90 * 60; // 90 minutos em segundos
+    let cronometro;
+
+    // Calcula linhas reais escritas
+    function contarLinhas() {
+      const lineHeight = parseFloat(getComputedStyle(textarea).lineHeight);
+      const scrollHeight = textarea.scrollHeight;
+      const baseHeight = textarea.clientHeight; // altura padrão sem texto
+      let linhas = Math.floor((scrollHeight - (baseHeight - lineHeight)) / lineHeight);
+      return linhas > 0 ? linhas : 0;
+    }
+
+    textarea.addEventListener("input", () => {
+      let linhas = contarLinhas();
+      linhaCount.textContent = linhas;
+      charCount.textContent = textarea.value.length;
+
+      // Validação visual
+      if (linhas < 7 || linhas > 30) {
+        linhaCount.className = "erro";
+      } else {
+        linhaCount.className = "ok";
+      }
+    });
+
+    function atualizarTimer() {
+      let horas = Math.floor(tempoRestante / 3600);
+      let minutos = Math.floor((tempoRestante % 3600) / 60);
+      let segundos = tempoRestante % 60;
+
+      timerDisplay.textContent =
+        (horas < 10 ? "0" : "") + horas + ":" +
+        (minutos < 10 ? "0" : "") + minutos + ":" +
+        (segundos < 10 ? "0" : "") + segundos;
+
+      if (tempoRestante <= 0) {
+        clearInterval(cronometro);
+        textarea.disabled = true;
+        alert("⏰ Tempo esgotado! Sua redação foi bloqueada.");
+      } else {
+        tempoRestante--;
+      }
+    }
+
+    function iniciar() {
+      clearInterval(cronometro);
+      cronometro = setInterval(atualizarTimer, 1000);
+    }
+
+    function reiniciar() {
+      clearInterval(cronometro);
+      tempoRestante = 90 * 60;
+      textarea.disabled = false;
+      iniciar();
+    }
+
+    function limpar() {
+      textarea.value = "";
+      linhaCount.textContent = 0;
+      charCount.textContent = 0;
+      linhaCount.className = ""; // reseta estilo
+    }
+
+    function salvar() {
+      const texto = textarea.value;
+      if (texto.trim() === "") {
+        alert("Digite sua redação antes de salvar!");
+        return;
+      }
+      const blob = new Blob([texto], { type: "text/plain;charset=utf-8" });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = "minha-redacao-enem.txt";
+      link.click();
+    }
+
+    // Inicia automaticamente ao carregar
+    iniciar();
+  </script>
+</body>
+</html>
